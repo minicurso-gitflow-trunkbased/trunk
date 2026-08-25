@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Guia rápido de Trunk-Based Development</title>
+  <meta name="description" content="Guia rápido: as cinco regras do trunk-based development usadas neste minicurso.">
+  <link rel="stylesheet" href="../assets/css/style.css">
+</head>
+<body>
+  <header class="topo">
+    <nav class="nav container" aria-label="Navegação principal">
+      <a class="marca" href="../index.html">🌳 <strong>Minicurso</strong> Git</a>
+      <button id="alternar-tema" class="botao-tema" type="button" aria-label="Alternar tema claro/escuro">🌗</button>
+    </nav>
+  </header>
+
+  <main class="container hero">
+    <p class="etiqueta">Guia</p>
+    <h1>Trunk-Based Development em cinco regras</h1>
+    <p class="subtitulo">O suficiente para trabalhar neste repositório sem atrapalhar as outras pessoas.</p>
+  </main>
+
+  <section class="container secao">
+    <ol class="linha-tempo">
+      <li>
+        <h3>1. Uma linha só importa: a <code>main</code></h3>
+        <p>A <code>main</code> está sempre publicável. Não existe <code>develop</code>, não existe branch de release. O que está na main é o que está no ar.</p>
+      </li>
+      <li>
+        <h3>2. Integre pelo menos uma vez por dia</h3>
+        <p>Branch que vive mais de um dia vira dívida. Se o seu trabalho não cabe em um dia, quebre em pedaços que caibam — cada pedaço precisa deixar o site funcionando.</p>
+      </li>
+      <li>
+        <h3>3. Commits pequenos e com contexto</h3>
+        <p>Um commit = uma mudança explicável em uma frase. Isso é o que torna possível reverter uma coisa sem desfazer outras cinco.</p>
+      </li>
+      <li>
+        <h3>4. Puxe antes de empurrar</h3>
+        <p><code>git pull --rebase</code> antes de cada <code>git push</code>. Conflitos resolvidos de dez em dez minutos são triviais; conflitos de duas semanas são um projeto à parte.</p>
+      </li>
+      <li>
+        <h3>5. Quebrou a main? Conserta primeiro</h3>
+        <p>Se a CI ficar vermelha, a prioridade de todo mundo é voltar ao verde — corrigindo ou revertendo (<code>git revert &lt;sha&gt;</code>). Reverter não é fracasso, é higiene.</p>
+      </li>
+    </ol>
+  </section>
+
+  <section class="container secao">
+    <h2>E quando a mudança é grande?</h2>
+    <p class="secao-intro">Duas técnicas resolvem quase tudo sem branch de longa duração:</p>
+    <div class="cartoes">
+      <article class="cartao">
+        <h3>Feature flag</h3>
+        <p>Publique o código desligado e ligue depois. O código chega na main sem aparecer para quem visita o site.</p>
+        <pre><code>const FLAGS = { novaSecaoQuiz: false };
+if (FLAGS.novaSecaoQuiz) montarQuiz();</code></pre>
+      </article>
+      <article class="cartao">
+        <h3>Branch curta</h3>
+        <p>Precisa de revisão? Crie uma branch, abra o PR e integre <strong>no mesmo dia</strong>. Depois apague a branch.</p>
+        <pre><code>git switch -c feat/secao-quiz
+git push -u origin feat/secao-quiz
+# abra o PR, integre, e:
+git switch main &amp;&amp; git pull --rebase</code></pre>
+      </article>
+    </div>
+  </section>
+
+  <section class="container secao">
+    <h2>Comparando com o Gitflow</h2>
+    <div class="cartoes">
+      <article class="cartao">
+        <h3>O que o Gitflow resolve bem</h3>
+        <p>Software distribuído em versões (v1.2, v1.3), com suporte a versões antigas e janelas de release combinadas com clientes.</p>
+      </article>
+      <article class="cartao destaque">
+        <h3>O que o trunk-based resolve bem</h3>
+        <p>Produto que está sempre no ar — como este site. A "versão" é simplesmente o último commit da main.</p>
+      </article>
+    </div>
+    <p class="nota"><a href="../index.html">← Voltar para a página inicial</a></p>
+  </section>
+
+  <script src="../assets/js/main.js"></script>
+</body>
+</html>

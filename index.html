@@ -1,0 +1,139 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Minicurso: Gitflow vs Trunk-Based Development</title>
+  <meta name="description" content="Minicurso prático sobre estratégias de branching: Gitflow e Trunk-Based Development. Este site é construído colaborativamente pelos participantes.">
+  <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>🌳</text></svg>">
+  <link rel="stylesheet" href="assets/css/style.css">
+</head>
+<body>
+  <a class="skip-link" href="#conteudo">Pular para o conteúdo</a>
+
+  <header class="topo">
+    <nav class="nav container" aria-label="Navegação principal">
+      <a class="marca" href="#inicio">🌳 <strong>Minicurso</strong> Git</a>
+      <ul class="nav-links">
+        <li><a href="#comparativo">Comparativo</a></li>
+        <li><a href="#roteiro">Roteiro</a></li>
+        <li><a href="#participantes">Participantes</a></li>
+        <li><a href="#contribuir">Contribuir</a></li>
+      </ul>
+      <button id="alternar-tema" class="botao-tema" type="button" aria-label="Alternar tema claro/escuro">🌗</button>
+    </nav>
+  </header>
+
+  <main id="conteudo">
+    <section id="inicio" class="hero container">
+      <p class="etiqueta">IFPR · Minicurso</p>
+      <h1>Gitflow <span class="versus">vs</span> Trunk-Based Development</h1>
+      <p class="subtitulo">
+        Um site construído por muitas mãos, ao mesmo tempo, direto na <code>main</code>.
+        Cada commit que você fizer aqui vai para o ar automaticamente em poucos minutos.
+      </p>
+      <div class="acoes">
+        <a class="botao botao-primario" href="#contribuir">Como participar</a>
+        <a class="botao" href="docs/trunk-based.html">Guia trunk-based</a>
+      </div>
+      <dl class="metricas" id="metricas">
+        <div><dt>Participantes</dt><dd data-metrica="participantes">—</dd></div>
+        <div><dt>Branch principal</dt><dd>main</dd></div>
+        <div><dt>Deploy</dt><dd>automático</dd></div>
+      </dl>
+    </section>
+
+    <section id="comparativo" class="container secao">
+      <h2>Duas formas de organizar o trabalho</h2>
+      <p class="secao-intro">
+        Não existe estratégia certa em abstrato: existe a que combina com o tamanho do time,
+        a frequência de entrega e a maturidade dos testes automatizados.
+      </p>
+      <div class="cartoes">
+        <article class="cartao">
+          <h3>Gitflow</h3>
+          <p>Branches de longa duração (<code>develop</code>, <code>release/*</code>, <code>hotfix/*</code>) com integração periódica.</p>
+          <ul class="lista-marcada">
+            <li class="ok">Versões bem delimitadas</li>
+            <li class="ok">Bom para releases empacotados</li>
+            <li class="nao">Merges grandes e dolorosos</li>
+            <li class="nao">Feedback tardio de integração</li>
+          </ul>
+        </article>
+        <article class="cartao destaque">
+          <h3>Trunk-Based</h3>
+          <p>Todo mundo integra na <code>main</code> várias vezes ao dia; branches vivem horas, não semanas.</p>
+          <ul class="lista-marcada">
+            <li class="ok">Conflitos pequenos e frequentes</li>
+            <li class="ok">Deploy contínuo de verdade</li>
+            <li class="nao">Exige CI rápida e confiável</li>
+            <li class="nao">Exige disciplina de commits pequenos</li>
+          </ul>
+        </article>
+      </div>
+    </section>
+
+    <section id="roteiro" class="container secao">
+      <h2>Roteiro do minicurso</h2>
+      <ol class="linha-tempo" id="roteiro-lista">
+        <li><h3>1. Contexto</h3><p>Por que estratégias de branching existem e que problema resolvem.</p></li>
+        <li><h3>2. Gitflow na prática</h3><p>Simulação de um ciclo de release completo e seus pontos de atrito.</p></li>
+        <li><h3>3. Trunk-based na prática</h3><p>Todos com acesso de escrita neste repositório, integrando na <code>main</code>.</p></li>
+        <li><h3>4. CI/CD</h3><p>Pipeline que valida e publica cada commit automaticamente.</p></li>
+        <li><h3>5. Feature flags</h3><p>Como entregar código incompleto sem quebrar o site.</p></li>
+      </ol>
+    </section>
+
+    <section id="participantes" class="container secao">
+      <h2>Participantes</h2>
+      <p class="secao-intro">
+        Cada pessoa aqui adicionou um arquivo próprio em <code>data/participantes/</code>.
+        Arquivos separados = quase zero conflito, mesmo com todo mundo commitando junto.
+      </p>
+      <div id="grade-participantes" class="grade-participantes" aria-live="polite">
+        <p class="carregando">Carregando participantes…</p>
+      </div>
+    </section>
+
+    <section id="contribuir" class="container secao">
+      <h2>Como contribuir</h2>
+      <div class="passos">
+        <div class="passo">
+          <span class="passo-num">1</span>
+          <h3>Clone e crie seu arquivo</h3>
+          <pre><code>git clone https://github.com/minicurso-gitflow-trunkbased/minicurso-gitflow-trunkbased.github.io.git
+cd minicurso-gitflow-trunkbased.github.io
+cp data/participantes/_exemplo.json data/participantes/seu-usuario.json</code></pre>
+        </div>
+        <div class="passo">
+          <span class="passo-num">2</span>
+          <h3>Rode localmente</h3>
+          <pre><code>node scripts/gerar-manifesto.mjs
+python3 -m http.server 8000</code></pre>
+        </div>
+        <div class="passo">
+          <span class="passo-num">3</span>
+          <h3>Integre na main</h3>
+          <pre><code>git pull --rebase
+git add data/participantes/seu-usuario.json
+git commit -m "feat: adiciona participante seu-usuario"
+git push</code></pre>
+        </div>
+      </div>
+      <p class="nota">
+        Detalhes, regras de convivência e o que fazer quando der conflito estão no
+        <a href="https://github.com/minicurso-gitflow-trunkbased/minicurso-gitflow-trunkbased.github.io/blob/main/CONTRIBUTING.md">CONTRIBUTING.md</a>.
+      </p>
+    </section>
+  </main>
+
+  <footer class="rodape">
+    <div class="container">
+      <p>Minicurso Gitflow &amp; Trunk-Based Development — IFPR.</p>
+      <p class="rodape-meta">Publicado automaticamente via GitHub Actions · <span id="build-info">build local</span></p>
+    </div>
+  </footer>
+
+  <script src="assets/js/main.js"></script>
+</body>
+</html>

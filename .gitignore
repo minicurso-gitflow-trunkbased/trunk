@@ -1,0 +1,14 @@
+# artefatos gerados pela build/CI (não versionar)
+data/participantes.json
+data/build.json
+
+# sistema operacional / editores
+.DS_Store
+Thumbs.db
+*.swp
+.idea/
+.vscode/
+!.vscode/extensions.json
+
+# dependências (o site não usa, mas alunos podem testar coisas)
+node_modules/

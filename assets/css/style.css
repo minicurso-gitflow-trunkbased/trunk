@@ -1,0 +1,173 @@
+/* =========================================================
+   Minicurso Gitflow x Trunk-Based — folha de estilo base
+   Convenção: variáveis em :root, componentes em blocos
+   comentados. Adicione seu componente no FIM do arquivo
+   para reduzir conflitos de merge.
+   ========================================================= */
+
+:root {
+  --fundo: #ffffff;
+  --fundo-suave: #f4f5f7;
+  --superficie: #ffffff;
+  --borda: #dfe3e8;
+  --texto: #1b1f24;
+  --texto-suave: #5a6472;
+  --acento: #2f6f4f;
+  --acento-forte: #24583e;
+  --acento-suave: #e6f2ec;
+  --alerta: #b3452f;
+  --raio: 12px;
+  --sombra: 0 1px 2px rgba(16, 24, 40, .06), 0 8px 24px rgba(16, 24, 40, .06);
+  --largura: 1080px;
+}
+
+[data-tema="escuro"] {
+  --fundo: #0f1419;
+  --fundo-suave: #151b22;
+  --superficie: #161d25;
+  --borda: #27313c;
+  --texto: #e7edf3;
+  --texto-suave: #97a3b2;
+  --acento: #6cc79a;
+  --acento-forte: #8fdcb4;
+  --acento-suave: #16281f;
+  --alerta: #e58b74;
+  --sombra: 0 1px 2px rgba(0, 0, 0, .4), 0 8px 24px rgba(0, 0, 0, .3);
+}
+
+* { box-sizing: border-box; }
+
+body {
+  margin: 0;
+  background: var(--fundo);
+  color: var(--texto);
+  font-family: system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", sans-serif;
+  line-height: 1.6;
+  -webkit-font-smoothing: antialiased;
+}
+
+h1, h2, h3 { line-height: 1.2; letter-spacing: -.02em; }
+a { color: var(--acento); }
+code, pre { font-family: ui-monospace, SFMono-Regular, "SF Mono", Menlo, Consolas, monospace; }
+code { font-size: .9em; background: var(--fundo-suave); padding: .15em .4em; border-radius: 5px; }
+pre { background: var(--fundo-suave); border: 1px solid var(--borda); border-radius: var(--raio); padding: 1rem; overflow-x: auto; font-size: .82rem; }
+pre code { background: none; padding: 0; }
+
+.container { width: min(100% - 2.5rem, var(--largura)); margin-inline: auto; }
+
+.skip-link {
+  position: absolute; left: -9999px;
+  background: var(--acento); color: #fff; padding: .6rem 1rem; border-radius: 0 0 var(--raio) 0;
+}
+.skip-link:focus { left: 0; top: 0; z-index: 10; }
+
+/* ---------- topo / navegação ---------- */
+.topo {
+  position: sticky; top: 0; z-index: 5;
+  background: color-mix(in srgb, var(--fundo) 88%, transparent);
+  backdrop-filter: blur(8px);
+  border-bottom: 1px solid var(--borda);
+}
+.nav { display: flex; align-items: center; gap: 1.5rem; padding: .85rem 0; }
+.marca { text-decoration: none; color: var(--texto); font-size: 1.05rem; }
+.nav-links { display: flex; gap: 1.25rem; list-style: none; margin: 0; padding: 0; margin-left: auto; flex-wrap: wrap; }
+.nav-links a { text-decoration: none; color: var(--texto-suave); font-size: .92rem; }
+.nav-links a:hover { color: var(--acento); }
+.botao-tema {
+  background: transparent; border: 1px solid var(--borda); color: inherit;
+  border-radius: 999px; width: 2.25rem; height: 2.25rem; cursor: pointer; font-size: 1rem;
+}
+.botao-tema:hover { border-color: var(--acento); }
+
+/* ---------- hero ---------- */
+.hero { padding: 4.5rem 0 3rem; }
+.etiqueta {
+  display: inline-block; margin: 0 0 .75rem; padding: .25rem .7rem;
+  background: var(--acento-suave); color: var(--acento-forte);
+  border-radius: 999px; font-size: .78rem; font-weight: 600; letter-spacing: .04em; text-transform: uppercase;
+}
+.hero h1 { font-size: clamp(2rem, 5vw, 3.25rem); margin: 0 0 1rem; }
+.versus { color: var(--texto-suave); font-weight: 400; }
+.subtitulo { font-size: 1.1rem; color: var(--texto-suave); max-width: 60ch; margin: 0 0 1.75rem; }
+
+.acoes { display: flex; gap: .75rem; flex-wrap: wrap; }
+.botao {
+  display: inline-block; padding: .65rem 1.2rem; border-radius: var(--raio);
+  border: 1px solid var(--borda); background: var(--superficie);
+  color: var(--texto); text-decoration: none; font-weight: 600; font-size: .95rem;
+}
+.botao:hover { border-color: var(--acento); }
+.botao-primario { background: var(--acento); border-color: var(--acento); color: #fff; }
+.botao-primario:hover { background: var(--acento-forte); border-color: var(--acento-forte); }
+
+.metricas { display: flex; gap: 2.5rem; margin: 3rem 0 0; flex-wrap: wrap; }
+.metricas dt { font-size: .78rem; text-transform: uppercase; letter-spacing: .06em; color: var(--texto-suave); }
+.metricas dd { margin: .2rem 0 0; font-size: 1.5rem; font-weight: 700; }
+
+/* ---------- seções ---------- */
+.secao { padding: 3.5rem 0; border-top: 1px solid var(--borda); }
+.secao h2 { font-size: clamp(1.5rem, 3vw, 2rem); margin: 0 0 .75rem; }
+.secao-intro { color: var(--texto-suave); max-width: 65ch; margin: 0 0 2rem; }
+
+/* ---------- cartões de comparação ---------- */
+.cartoes { display: grid; gap: 1.25rem; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); }
+.cartao {
+  background: var(--superficie); border: 1px solid var(--borda);
+  border-radius: var(--raio); padding: 1.5rem; box-shadow: var(--sombra);
+}
+.cartao.destaque { border-color: var(--acento); }
+.cartao h3 { margin: 0 0 .5rem; }
+.cartao p { color: var(--texto-suave); margin: 0 0 1rem; }
+.lista-marcada { list-style: none; margin: 0; padding: 0; display: grid; gap: .45rem; font-size: .93rem; }
+.lista-marcada li::before { margin-right: .5rem; }
+.lista-marcada .ok::before { content: "✔"; color: var(--acento); }
+.lista-marcada .nao::before { content: "✖"; color: var(--alerta); }
+
+/* ---------- linha do tempo ---------- */
+.linha-tempo { list-style: none; margin: 0; padding: 0 0 0 1.5rem; border-left: 2px solid var(--borda); display: grid; gap: 1.75rem; }
+.linha-tempo li { position: relative; }
+.linha-tempo li::before {
+  content: ""; position: absolute; left: calc(-1.5rem - 6px); top: .5rem;
+  width: 10px; height: 10px; border-radius: 50%; background: var(--acento);
+}
+.linha-tempo h3 { margin: 0 0 .25rem; font-size: 1.05rem; }
+.linha-tempo p { margin: 0; color: var(--texto-suave); }
+
+/* ---------- participantes ---------- */
+.grade-participantes { display: grid; gap: 1rem; grid-template-columns: repeat(auto-fill, minmax(220px, 1fr)); }
+.participante {
+  background: var(--superficie); border: 1px solid var(--borda);
+  border-radius: var(--raio); padding: 1.1rem; box-shadow: var(--sombra);
+}
+.participante h3 { margin: 0 0 .15rem; font-size: 1rem; }
+.participante .usuario { font-size: .85rem; color: var(--texto-suave); text-decoration: none; }
+.participante .usuario:hover { color: var(--acento); }
+.participante .curiosidade { margin: .7rem 0 0; font-size: .9rem; color: var(--texto-suave); }
+.avatar {
+  width: 40px; height: 40px; border-radius: 50%; display: grid; place-items: center;
+  background: var(--acento-suave); color: var(--acento-forte); font-weight: 700; margin-bottom: .75rem;
+}
+.carregando, .vazio { color: var(--texto-suave); font-style: italic; }
+
+/* ---------- passos ---------- */
+.passos { display: grid; gap: 1.25rem; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); }
+.passo { background: var(--superficie); border: 1px solid var(--borda); border-radius: var(--raio); padding: 1.25rem; }
+.passo-num {
+  display: grid; place-items: center; width: 1.75rem; height: 1.75rem; border-radius: 50%;
+  background: var(--acento); color: #fff; font-weight: 700; font-size: .9rem; margin-bottom: .6rem;
+}
+.passo h3 { margin: 0 0 .75rem; font-size: 1rem; }
+.nota { margin-top: 1.5rem; color: var(--texto-suave); font-size: .92rem; }
+
+/* ---------- rodapé ---------- */
+.rodape { border-top: 1px solid var(--borda); padding: 2rem 0; margin-top: 2rem; color: var(--texto-suave); font-size: .9rem; }
+.rodape p { margin: .2rem 0; }
+.rodape-meta { font-size: .82rem; }
+
+@media (prefers-reduced-motion: no-preference) {
+  html { scroll-behavior: smooth; }
+}
+
+/* =========================================================
+   ↓↓↓ ADICIONE SEUS ESTILOS ABAIXO DESTA LINHA ↓↓↓
+   ========================================================= */

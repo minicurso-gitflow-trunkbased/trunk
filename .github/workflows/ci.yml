@@ -1,0 +1,30 @@
+name: CI
+
+# Feedback rápido é o que torna o trunk-based seguro: se esta checagem
+# demorar minutos, as pessoas param de integrar com frequência.
+on:
+  pull_request:
+  push:
+    branches-ignore: [main]   # na main quem valida é o workflow de deploy
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  validar:
+    name: Validar
+    runs-on: ubuntu-latest
+    timeout-minutes: 5
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 22
+
+      - name: Estrutura, HTML e JSON
+        run: node scripts/validar.mjs
+
+      - name: Manifesto de participantes
+        run: node scripts/gerar-manifesto.mjs

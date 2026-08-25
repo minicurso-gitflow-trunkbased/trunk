@@ -1,6 +1,6 @@
 # Minicurso: Gitflow &amp; Trunk-Based Development
 
-Site do minicurso, publicado em **https://minicurso-gitflow-trunkbased.github.io**.
+Site do minicurso, publicado em **https://minicurso-gitflow-trunkbased.github.io/trunk/**.
 
 Este repositório é, ao mesmo tempo, o material e o laboratório: todas as pessoas
 participantes têm acesso de escrita e integram na `main` durante a aula. Cada commit

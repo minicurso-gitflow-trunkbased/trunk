@@ -20,6 +20,7 @@
         <li><a href="#participantes">Participantes</a></li>
         <li><a href="visualizador.html">Visualizador Trunk</a></li>
         <li><a href="#contribuir">Contribuir</a></li>
+        <li><a href="#cards-lorem">Cards</a></li>
       </ul>
       <button id="alternar-tema" class="botao-tema" type="button" aria-label="Alternar tema claro/escuro">🌗</button>
     </nav>
@@ -129,7 +130,11 @@ git push</code></pre>
     </section>
 
     <section id="cards-lorem" class="container secao">
-      <h2>Conteúdo Adicional</h2>
+      <h2>Trunk-Based em cards</h2>
+      <p class="secao-intro">
+        Cada card apresenta um aspecto do Trunk-Based Development. Clique em
+        <strong>Saber mais</strong> para ver a explicação completa.
+      </p>
       <div class="cartoes">
         <article class="cartao">
           <h3>Mussum Ipsum</h3>
@@ -139,18 +144,23 @@ git push</code></pre>
             boca num copo de cachaça, agora eu só uso canudis!
           </p>
         </article>
-        <article class="cartao">
-          <h3>O que é ?</h3>
+        <!-- Card: O que é? -->
+        <article id="o-que-e" class="cartao cartao-conceito">
+          <span class="cartao-icone" aria-hidden="true">🌳</span>
+          <h3>O que é?</h3>
           <p>
-            O desenvolvimento baseado em tronco é uma prática de gerenciamento de controle de versão em que os desenvolvedores
-            fazem o merge de atualizações pequenas e frequentes em um "tronco" ou ramificação principais. É uma prática comum
-            entre as equipes de DevOps e faz parte do ciclo de vida de DevOps porque simplifica as fases de merge e integração.
-            Na verdade, o desenvolvimento baseado em tronco é prática obrigatória de CI/CD. Os desenvolvedores podem criar
-            ramificações de curta duração com alguns pequenos commits se comparadas a outras estratégias de ramificação de
-            funções de longa duração. À medida em que crescem a complexidade da base de código e o tamanho da equipe, o
-            desenvolvimento baseado em tronco ajuda a manter o fluxo de versões de produção. Para ler mais informações sobre
-            esse assunto, acesse: <a href="https://www.atlassian.com/br/continuous-delivery/continuous-integration/trunk-based-development" target="_blank" rel="noopener">Desenvolvimento baseado em troncos | Atlassian</a>.
+            Um modelo de versionamento em que todo o time integra o código em uma
+            única branch principal — o <em>trunk</em>.
           </p>
+          <button class="botao botao-saber-mais" type="button"
+                  aria-expanded="false" aria-controls="detalhe-o-que-e">
+            Saber mais
+          </button>
+          <div id="detalhe-o-que-e" class="cartao-detalhe" hidden>
+            <p>
+              O desenvolvimento baseado em tronco é uma prática de gerenciamento de controle de versão em que os desenvolvedores fazem o merge de atualizações pequenas e frequentes em um "tronco" ou ramificação principais. É uma prática comum entre as equipes de DevOps e faz parte do ciclo de vida de DevOps porque simplifica as fases de merge e integração. Na verdade, o desenvolvimento baseado em tronco é prática obrigatória de CI/CD. Os desenvolvedores podem criar ramificações de curta duração com alguns pequenos commits se comparadas a outras estratégias de ramificação de funções de longa duração. À medida em que crescem a complexidade da base de código e o tamanho da equipe, o desenvolvimento baseado em tronco ajuda a manter o fluxo de versões de produção. Para ler mais informações sobre esse assunto, acesse: <a href="https://www.atlassian.com/br/continuous-delivery/continuous-integration/trunk-based-development" target="_blank" rel="noopener">Desenvolvimento baseado em troncos | Atlassian</a>.
+            </p>
+          </div>
         </article>
         <article class="cartao">
           <h3>Mussum Ipsum parte 3</h3>

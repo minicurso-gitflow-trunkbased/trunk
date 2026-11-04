@@ -272,6 +272,13 @@
     if (!elAreaTimeline) return;
     var filtrados = filtrarCommits();
 
+    var selecaoVisivel = filtrados.some(function (commit) {
+      return commit.sha === estado.selecionadoSha;
+    });
+    if (estado.selecionadoSha && !selecaoVisivel) {
+      estado.selecionadoSha = null;
+    }
+
     if (elContadorExibidos) {
       elContadorExibidos.textContent = filtrados.length + ' de ' + estado.commits.length + ' commit(s)';
     }

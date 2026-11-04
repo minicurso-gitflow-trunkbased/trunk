@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Cadastro de Bolsas</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <main class="container">
+    <h1>Cadastro de Bolsas</h1>
+
+    <section class="card">
+      <h2 id="form-titulo">Nova bolsa</h2>
+
+      <form id="form-bolsa" novalidate>
+        <input type="hidden" id="bolsa-id">
+
+        <div class="campo">
+          <label for="tamanho">Tamanho</label>
+          <select id="tamanho" required>
+            <option value="">Selecione...</option>
+            <option value="P">P - Pequena</option>
+            <option value="M">M - Média</option>
+            <option value="G">G - Grande</option>
+          </select>
+        </div>
+
+        <div class="campo">
+          <label for="cor">Cor</label>
+          <input type="text" id="cor" list="cores-sugeridas" placeholder="Ex.: Preto" maxlength="40" required>
+          <datalist id="cores-sugeridas">
+            <option value="Preto">
+            <option value="Branco">
+            <option value="Marrom">
+            <option value="Bege">
+            <option value="Vermelho">
+            <option value="Azul">
+            <option value="Rosa">
+          </datalist>
+        </div>
+
+        <div class="campo">
+          <label for="preco">Preço (R$)</label>
+          <input type="number" id="preco" min="0.01" step="0.01" placeholder="0,00" required>
+        </div>
+
+        <p id="erro" class="erro" role="alert"></p>
+
+        <div class="acoes">
+          <button type="submit" id="btn-salvar" class="btn btn-primario">Cadastrar</button>
+          <button type="button" id="btn-cancelar" class="btn btn-secundario" hidden>Cancelar</button>
+        </div>
+      </form>
+    </section>
+
+    <section class="card">
+      <h2>Bolsas cadastradas</h2>
+
+      <table>
+        <thead>
+          <tr>
+            <th>#</th>
+            <th>Tamanho</th>
+            <th>Cor</th>
+            <th>Preço</th>
+            <th>Ações</th>
+          </tr>
+        </thead>
+        <tbody id="lista-bolsas"></tbody>
+      </table>
+
+      <p id="vazio" class="vazio">Nenhuma bolsa cadastrada.</p>
+    </section>
+  </main>
+
+  <script src="script.js"></script>
+</body>
+</html>

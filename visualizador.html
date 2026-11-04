@@ -1,0 +1,195 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Visualizador do Trunk · Minicurso Git</title>
+  <meta name="description" content="Visualizador interativo de commits e fluxo de Trunk-Based Development. Acompanhe a main em tempo real, branches efêmeras e deploys contínuos.">
+  <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>🌳</text></svg>">
+  <link rel="stylesheet" href="assets/css/style.css">
+</head>
+<body>
+  <a class="skip-link" href="#conteudo">Pular para o conteúdo</a>
+
+  <header class="topo">
+    <nav class="nav container" aria-label="Navegação principal">
+      <a class="marca" href="index.html">🌳 <strong>Minicurso</strong> Git</a>
+      <ul class="nav-links">
+        <li><a href="index.html#comparativo">Comparativo</a></li>
+        <li><a href="index.html#roteiro">Roteiro</a></li>
+        <li><a href="index.html#participantes">Participantes</a></li>
+        <li><a href="docs/trunk-based.html">Guia Trunk</a></li>
+        <li><a href="visualizador.html" class="link-ativo">Visualizador Trunk</a></li>
+        <li><a href="index.html#contribuir">Contribuir</a></li>
+      </ul>
+      <button id="alternar-tema" class="botao-tema" type="button" aria-label="Alternar tema claro/escuro">🌗</button>
+    </nav>
+  </header>
+
+  <main id="conteudo">
+    <section class="hero container">
+      <p class="etiqueta">Ferramenta Interativa</p>
+      <h1>Visualizador do <span>Trunk</span></h1>
+      <p class="subtitulo">
+        Veja na prática como funciona a estratégia <strong>Trunk-Based</strong>:
+        a linha central (<code>main</code>) avança sem interrupções, branches curtas
+        vivem apenas algumas horas e cada integração aciona a validação de CI e deploy contínuo.
+      </p>
+
+      <dl class="metricas" id="metricas-trunk">
+        <div>
+          <dt>Total de Commits</dt>
+          <dd id="metrica-total-commits">—</dd>
+        </div>
+        <div>
+          <dt>Diretos na Main</dt>
+          <dd id="metrica-diretos-trunk">—</dd>
+        </div>
+        <div>
+          <dt>Branches Integradas</dt>
+          <dd id="metrica-branches-integradas">—</dd>
+        </div>
+        <div>
+          <dt>Status da Main</dt>
+          <dd class="status-verde">● 100% no ar</dd>
+        </div>
+      </dl>
+    </section>
+
+    <section class="container secao-visualizador">
+      <!-- Barra de ferramentas e filtros -->
+      <div class="painel-controles" aria-label="Controles do visualizador">
+        <div class="linha-controles">
+          <div class="grupo-busca">
+            <label for="campo-busca" class="rotulo-invisivel">Buscar commits</label>
+            <input type="search" id="campo-busca" class="campo-busca" placeholder="Buscar por mensagem, hash ou autor…" autocomplete="off">
+          </div>
+
+          <div class="grupo-filtros">
+            <label for="filtro-tipo" class="rotulo-filtro">Tipo:</label>
+            <select id="filtro-tipo" class="seletor-filtro">
+              <option value="todos">Todos os tipos</option>
+              <option value="feat">feat: (funcionalidades)</option>
+              <option value="fix">fix: (correções)</option>
+              <option value="chore">chore: (tarefas/CI)</option>
+              <option value="merge">merge: (integrações)</option>
+              <option value="docs">docs: (documentação)</option>
+            </select>
+
+            <label for="filtro-trilha" class="rotulo-filtro">Trilha:</label>
+            <select id="filtro-trilha" class="seletor-filtro">
+              <option value="todas">Todas as trilhas</option>
+              <option value="trunk">Apenas Tronco (main)</option>
+              <option value="branch">Apenas Branches Curtas</option>
+            </select>
+          </div>
+
+          <div class="grupo-acoes">
+            <button type="button" id="botao-atualizar-github" class="botao botao-pequeno" title="Consultar commits recentes da API pública do GitHub">
+              <span>🌐</span> Atualizar via GitHub
+            </button>
+          </div>
+        </div>
+
+        <!-- Barra de Simulação Interativa (Laboratório Trunk-Based) -->
+        <div class="simulador-trunk" id="painel-simulador">
+          <div class="simulador-cabecalho">
+            <span class="simulador-titulo">🧪 <strong>Laboratório Interativo:</strong> Experimente as regras do Trunk-Based</span>
+            <span class="simulador-dica">Clique nos botões abaixo para simular commits em tempo real</span>
+          </div>
+          <div class="simulador-botoes">
+            <button type="button" id="btn-simular-commit-main" class="botao botao-simulador">
+              ➕ Commit direto na main
+            </button>
+            <button type="button" id="btn-simular-branch-curta" class="botao botao-simulador">
+              🌿 Criar branch curta
+            </button>
+            <button type="button" id="btn-simular-merge-pr" class="botao botao-simulador" disabled>
+              🔀 Integrar PR na main
+            </button>
+            <button type="button" id="btn-simular-revert" class="botao botao-simulador botao-alerta-suave">
+              ⚠️ Simular erro &amp; git revert
+            </button>
+            <button type="button" id="btn-resetar-simulacao" class="botao botao-simulador botao-neutro" title="Restaurar lista original">
+              ↺ Resetar
+            </button>
+          </div>
+          <div id="simulador-feedback" class="simulador-feedback" aria-live="polite"></div>
+        </div>
+      </div>
+
+      <!-- Área do Grafo Interativo e Detalhes -->
+      <div class="layout-visualizador">
+        <!-- Coluna Esquerda: Linha do Tempo e Grafo Visual -->
+        <div class="coluna-grafo">
+          <div class="cabecalho-grafo">
+            <div class="legenda-trilhas">
+              <span class="legenda-item"><span class="ponto-legenda ponto-trunk"></span> <strong>Tronco (main)</strong></span>
+              <span class="legenda-item"><span class="ponto-legenda ponto-branch"></span> <strong>Branch curta (feat/*)</strong></span>
+              <span class="legenda-item"><span class="ponto-legenda ponto-merge"></span> <strong>Merge rápido</strong></span>
+            </div>
+            <span id="contador-exibidos" class="contador-exibidos">Mostrando commits…</span>
+          </div>
+
+          <div id="area-timeline-trunk" class="area-timeline-trunk" role="region" aria-label="Linha do tempo interativa do Trunk">
+            <div class="carregando">Carregando histórico do trunk…</div>
+          </div>
+        </div>
+
+        <!-- Coluna Direita: Painel de Detalhes do Commit -->
+        <aside class="coluna-detalhes" id="painel-detalhes-commit" aria-label="Detalhes do commit selecionado">
+          <div class="cartao cartao-detalhe-fixo" id="conteudo-detalhes">
+            <div class="detalhe-placeholder">
+              <span class="icone-destaque">👆</span>
+              <h3>Selecione um commit</h3>
+              <p>Clique em qualquer nó na linha do tempo para inspecionar os detalhes, autor, impacto no trunk e status da CI.</p>
+            </div>
+          </div>
+        </aside>
+      </div>
+    </section>
+
+    <!-- Seção Pedagógica: As Regras do Trunk aplicadas -->
+    <section class="container secao">
+      <h2>O que o visualizador nos ensina sobre Trunk-Based?</h2>
+      <p class="secao-intro">
+        Trunk-Based Development não é apenas uma convenção de nomenclatura — é uma disciplina de integração contínua.
+      </p>
+      <div class="cartoes">
+        <article class="cartao">
+          <h3>1. A Linha Central é Sagrada</h3>
+          <p>
+            No gráfico, repare como o tronco principal verde nunca para. Não existem branches de release congelando o desenvolvimento.
+            A <code>main</code> é a versão viva do produto em produção.
+          </p>
+        </article>
+        <article class="cartao destaque">
+          <h3>2. Branches Curtas (< 24h)</h3>
+          <p>
+            Quando uma branch é criada para uma feature maior, ela se reconecta quase imediatamente.
+            Quanto menor o tempo de vida da branch, menor a probabilidade de conflito com commits de colegas.
+          </p>
+        </article>
+        <article class="cartao">
+          <h3>3. Reversões são Bem-Vindas</h3>
+          <p>
+            Se a CI falhar ou um bug for detectado, um simples <code>git revert &lt;sha&gt;</code>
+            desfaz o problema sem reescrever o histórico compartilhado nem bloquear a turma.
+          </p>
+        </article>
+      </div>
+    </section>
+  </main>
+
+  <footer class="rodape">
+    <div class="container">
+      <p>Minicurso Gitflow &amp; Trunk-Based Development — IFPR.</p>
+      <p class="rodape-meta">Publicado automaticamente via GitHub Actions · <span id="build-info">build local</span></p>
+    </div>
+  </footer>
+
+  <script src="assets/js/main.js"></script>
+  <script src="assets/js/visualizador.js"></script>
+</body>
+</html>
+

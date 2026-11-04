@@ -31,6 +31,18 @@
     });
   }
 
+  /* ---------- cards: botão "Saber mais" ---------- */
+  document.querySelectorAll('.botao-saber-mais').forEach(function (botao) {
+    var detalhe = document.getElementById(botao.getAttribute('aria-controls'));
+    if (!detalhe) return;
+    botao.addEventListener('click', function () {
+      var aberto = botao.getAttribute('aria-expanded') === 'true';
+      botao.setAttribute('aria-expanded', String(!aberto));
+      botao.textContent = aberto ? 'Saber mais' : 'Mostrar menos';
+      detalhe.hidden = aberto;
+    });
+  });
+
   /* ---------- participantes ---------- */
   var grade = document.getElementById('grade-participantes');
 

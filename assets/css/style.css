@@ -902,3 +902,14 @@ pre code { background: none; padding: 0; }
 .cartao-detalhe p:last-child { margin-bottom: 0; }
 @keyframes aparecer { from { opacity: 0; transform: translateY(-4px); } to { opacity: 1; transform: none; } }
 @media (prefers-reduced-motion: reduce) { .cartao-detalhe { animation: none; } }
+
+/* ---------- botão flutuante "voltar ao topo" ---------- */
+.botao-topo {
+  position: fixed; right: 1.25rem; bottom: 1.25rem; z-index: 50;
+  width: 44px; height: 44px; border-radius: 50%;
+  border: 1px solid var(--borda); background: var(--superficie); color: var(--texto);
+  font-size: 1.25rem; font-family: inherit; cursor: pointer;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, .15);
+}
+.botao-topo:hover { border-color: var(--acento); color: var(--acento); }
+.botao-topo[hidden] { display: none; }

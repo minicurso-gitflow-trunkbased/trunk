@@ -176,4 +176,19 @@
       }
     });
   }
+
+  /* ---------- botão flutuante "voltar ao topo" ---------- */
+  var botaoTopo = document.getElementById('botao-topo');
+  if (botaoTopo) {
+    var LIMITE_ROLAGEM_PX = 400;
+
+    window.addEventListener('scroll', function () {
+      botaoTopo.hidden = window.scrollY < LIMITE_ROLAGEM_PX;
+    }, { passive: true });
+
+    botaoTopo.addEventListener('click', function () {
+      var reduzir = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+      window.scrollTo({ top: 0, behavior: reduzir ? 'auto' : 'smooth' });
+    });
+  }
 })();

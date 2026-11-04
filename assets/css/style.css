@@ -446,6 +446,7 @@ pre code { background: none; padding: 0; }
   border-color: var(--acento);
   outline: 2px solid var(--acento-suave);
   background: color-mix(in srgb, var(--acento-suave) 30%, var(--superficie));
+  box-shadow: inset 4px 0 var(--acento), var(--sombra);
 }
 
 .timeline-item:focus-visible {

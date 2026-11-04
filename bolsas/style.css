@@ -1,0 +1,158 @@
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  font-family: "Segoe UI", Arial, sans-serif;
+  background: #f3f0ec;
+  color: #2b2b2b;
+  padding: 32px 16px;
+}
+
+.container {
+  max-width: 760px;
+  margin: 0 auto;
+}
+
+h1 {
+  text-align: center;
+  margin-bottom: 24px;
+  color: #6b3f2a;
+}
+
+h2 {
+  font-size: 1.15rem;
+  margin-bottom: 16px;
+}
+
+.card {
+  background: #fff;
+  border-radius: 10px;
+  padding: 24px;
+  margin-bottom: 24px;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08);
+}
+
+/* Formulário */
+#form-bolsa {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 16px;
+}
+
+.campo {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+
+label {
+  font-weight: 600;
+  font-size: 0.9rem;
+}
+
+input,
+select {
+  padding: 10px;
+  border: 1px solid #ccc;
+  border-radius: 6px;
+  font-size: 1rem;
+}
+
+input:focus,
+select:focus {
+  outline: none;
+  border-color: #6b3f2a;
+  box-shadow: 0 0 0 2px rgba(107, 63, 42, 0.2);
+}
+
+.erro {
+  grid-column: 1 / -1;
+  color: #c0392b;
+  font-size: 0.9rem;
+  min-height: 1em;
+}
+
+.acoes {
+  grid-column: 1 / -1;
+  display: flex;
+  gap: 10px;
+}
+
+/* Botões */
+.btn {
+  padding: 10px 18px;
+  border: none;
+  border-radius: 6px;
+  font-size: 0.95rem;
+  cursor: pointer;
+  transition: opacity 0.2s;
+}
+
+.btn:hover {
+  opacity: 0.85;
+}
+
+.btn-primario {
+  background: #6b3f2a;
+  color: #fff;
+}
+
+.btn-secundario {
+  background: #ddd;
+  color: #333;
+}
+
+.btn-editar {
+  background: #2e86de;
+  color: #fff;
+  padding: 6px 12px;
+}
+
+.btn-excluir {
+  background: #c0392b;
+  color: #fff;
+  padding: 6px 12px;
+}
+
+/* Tabela */
+table {
+  width: 100%;
+  border-collapse: collapse;
+}
+
+th,
+td {
+  padding: 10px;
+  text-align: left;
+  border-bottom: 1px solid #eee;
+}
+
+th {
+  background: #faf7f4;
+  font-size: 0.9rem;
+}
+
+td:last-child {
+  display: flex;
+  gap: 6px;
+}
+
+tr.editando {
+  background: #fff8e6;
+}
+
+.vazio {
+  text-align: center;
+  color: #888;
+  padding: 16px 0 4px;
+}
+
+/* Responsivo */
+@media (max-width: 600px) {
+  #form-bolsa {
+    grid-template-columns: 1fr;
+  }
+}

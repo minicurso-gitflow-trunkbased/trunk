@@ -173,47 +173,148 @@ git push</code></pre>
       </div>
     </section>
     
-<section id="sobre-curso" class="container secao">
-  <h2>Sobre o Minicurso</h2>
 
-  <p class="secao-intro">
-    O minicurso Gitflow vs Trunk-Based Development faz parte
-    do módulo de Controle de Versão do curso de Engenharia de
-    Software e apresenta duas estratégias utilizadas para
-    organizar o desenvolvimento colaborativo de software.
-  </p>
+<section id="sobre-curso" class="container secao sobre-curso">
+  <div class="curso-cabecalho">
+    <span class="curso-tag">IFPR / ENGENHARIA DE SOFTWARE</span>
+    <h2>Por trás de um bom <span>desenvolvimento</span>, existe uma boa estratégia.</h2>
+    <p>
+      Mais do que aprender comandos Git, este minicurso explora
+      como equipes de desenvolvimento organizam, integram e
+      entregam software de forma colaborativa.
+    </p>
+  </div>
 
-  <div class="cartoes">
-    <article class="cartao">
-      <h3>🎯 Objetivo do minicurso</h3>
+  <div class="curso-banner">
+    <div class="curso-banner-info">
+      <span class="curso-label">DEVELOPMENT WORKFLOW</span>
+      <h3>Gitflow <span>×</span> Trunk-Based</h3>
       <p>
-        Compreender como diferentes estratégias de ramificação
-        influenciam a organização das equipes, a integração do
-        código, a identificação de conflitos e a frequência
-        de entrega de software.
+        Duas estratégias. Diferentes abordagens.
+        Um mesmo objetivo: desenvolver software com qualidade,
+        colaboração e eficiência.
       </p>
-    </article>
+      <div class="curso-tags">
+        <span>GIT</span>
+        <span>BRANCHING</span>
+        <span>CI/CD</span>
+        <span>COLLABORATION</span>
+      </div>
+    </div>
 
-    <article class="cartao">
-      <h3>📚 Conteúdos abordados</h3>
-      <ul>
-        <li>Conceitos e funcionamento do Gitflow;</li>
-        <li>Conceitos e funcionamento do Trunk-Based Development;</li>
-        <li>Feature Flags e Branch by Abstraction;</li>
-        <li>Integração e entrega contínua (CI/CD);</li>
-        <li>Comparação entre os modelos de desenvolvimento.</li>
-      </ul>
-    </article>
+    <div class="curso-grafico" aria-hidden="true">
+      <div class="fluxo-linha fluxo-main">
+        <span class="fluxo-ponto"></span>
+        <span class="fluxo-texto">main</span>
+      </div>
+      <div class="fluxo-linha fluxo-develop">
+        <span class="fluxo-ponto"></span>
+        <span class="fluxo-texto">develop</span>
+      </div>
+      <div class="fluxo-linha fluxo-feature">
+        <span class="fluxo-ponto"></span>
+        <span class="fluxo-texto">feature/*</span>
+      </div>
+      <div class="fluxo-linha fluxo-release">
+        <span class="fluxo-ponto"></span>
+        <span class="fluxo-texto">release/*</span>
+      </div>
+      <div class="fluxo-linha fluxo-trunk">
+        <span class="fluxo-ponto"></span>
+        <span class="fluxo-texto">trunk → deploy</span>
+      </div>
+      <div class="grafico-legenda">
+        <span>●</span> SOFTWARE DELIVERY PIPELINE
+      </div>
+    </div>
+  </div>
 
-    <article class="cartao">
-      <h3>💻 Atividade prática</h3>
+  <div class="curso-indicadores">
+    <div class="indicador">
+      <span class="indicador-numero">02</span>
+      <span class="indicador-titulo">Estratégias de branching</span>
+    </div>
+    <div class="indicador">
+      <span class="indicador-numero">03</span>
+      <span class="indicador-titulo">Técnicas complementares</span>
+    </div>
+    <div class="indicador">
+      <span class="indicador-numero">01</span>
+      <span class="indicador-titulo">Experiência prática em equipe</span>
+    </div>
+  </div>
+
+  <div class="curso-conteudo">
+    <div class="curso-conteudo-titulo">
+      <span class="curso-label">01 / CONHECIMENTO</span>
+      <h3>O que você vai explorar?</h3>
       <p>
-        Simulação de um ambiente de desenvolvimento em equipe,
-        utilizando os dois modelos de ramificação para comparar
-        conflitos de merge, tempo de integração, deploy e
-        resolução de problemas.
+        Conceitos, técnicas e práticas utilizadas no cotidiano
+        de equipes de desenvolvimento de software.
       </p>
-    </article>
+    </div>
+
+    <div class="curso-topicos">
+      <article class="topico">
+        <span class="topico-numero">01</span>
+        <div>
+          <h4>Gitflow</h4>
+          <p>Organização por branches de funcionalidades, desenvolvimento, releases e correções.</p>
+        </div>
+        <span class="topico-simbolo">↗</span>
+      </article>
+
+      <article class="topico">
+        <span class="topico-numero">02</span>
+        <div>
+          <h4>Trunk-Based Development</h4>
+          <p>Integração frequente, branches curtas e desenvolvimento a partir de um trunk compartilhado.</p>
+        </div>
+        <span class="topico-simbolo">↗</span>
+      </article>
+
+      <article class="topico">
+        <span class="topico-numero">03</span>
+        <div>
+          <h4>Feature Flags & Branch by Abstraction</h4>
+          <p>Técnicas para desenvolver e integrar funcionalidades de maneira gradual.</p>
+        </div>
+        <span class="topico-simbolo">↗</span>
+      </article>
+
+      <article class="topico">
+        <span class="topico-numero">04</span>
+        <div>
+          <h4>CI/CD e entrega contínua</h4>
+          <p>Automação de testes, integração de código e publicação de alterações.</p>
+        </div>
+        <span class="topico-simbolo">↗</span>
+      </article>
+    </div>
+  </div>
+
+  <div class="curso-pratica">
+    <div>
+      <span class="curso-label">02 / HANDS-ON EXPERIENCE</span>
+      <h3>Da teoria ao terminal.</h3>
+      <p>
+        Uma simulação prática em equipe: o mesmo backlog,
+        dois modelos de desenvolvimento e diferentes desafios
+        de integração.
+      </p>
+    </div>
+    <div class="pratica-etapas">
+      <div><span>01</span> Simulação Gitflow</div>
+      <div><span>02</span> Simulação Trunk-Based</div>
+      <div><span>03</span> Resolução de incidentes</div>
+    </div>
+  </div>
+
+  <div class="curso-frase">
+    <span>“</span>
+    O objetivo não é escolher o modelo mais popular,
+    mas compreender qual estratégia faz sentido para
+    cada realidade de desenvolvimento.
   </div>
 </section>
 

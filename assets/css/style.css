@@ -903,3 +903,342 @@ pre code { background: none; padding: 0; }
 .cartao-detalhe p:last-child { margin-bottom: 0; }
 @keyframes aparecer { from { opacity: 0; transform: translateY(-4px); } to { opacity: 1; transform: none; } }
 @media (prefers-reduced-motion: reduce) { .cartao-detalhe { animation: none; } }
+
+
+
+
+/* ===== SOBRE O MINICURSO ===== */
+
+.sobre-curso {
+  position: relative;
+  overflow: hidden;
+}
+
+.curso-cabecalho {
+  max-width: 760px;
+  margin-bottom: 38px;
+}
+
+.curso-tag,
+.curso-label {
+  display: inline-block;
+  color: #35d6a0;
+  font-size: 0.72rem;
+  font-weight: 800;
+  letter-spacing: 2px;
+  margin-bottom: 16px;
+}
+
+.curso-cabecalho h2 {
+  font-size: clamp(2rem, 5vw, 3.5rem);
+  line-height: 1.12;
+  letter-spacing: -1.5px;
+  margin-bottom: 18px;
+}
+
+.curso-cabecalho h2 span {
+  color: #35d6a0;
+}
+
+.curso-cabecalho > p {
+  color: var(--texto-secundario, #9299a8);
+  line-height: 1.8;
+  max-width: 650px;
+}
+
+.curso-banner {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 35px;
+  align-items: center;
+  padding: 45px;
+  border-radius: 22px;
+  background:
+    radial-gradient(circle at 85% 15%, rgba(53,214,160,.16), transparent 35%),
+    linear-gradient(135deg, #101d2c, #142b36);
+  border: 1px solid rgba(53,214,160,.25);
+  color: #fff;
+  position: relative;
+  overflow: hidden;
+}
+
+.curso-banner-info h3 {
+  font-size: clamp(2rem, 4vw, 3rem);
+  margin: 8px 0 16px;
+  letter-spacing: -1px;
+}
+
+.curso-banner-info h3 span {
+  color: #35d6a0;
+  font-size: .8em;
+}
+
+.curso-banner-info p {
+  color: #b7c6ce;
+  line-height: 1.8;
+  max-width: 440px;
+}
+
+.curso-tags {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 9px;
+  margin-top: 25px;
+}
+
+.curso-tags span {
+  font-size: .68rem;
+  letter-spacing: 1px;
+  padding: 8px 11px;
+  border: 1px solid rgba(53,214,160,.35);
+  border-radius: 5px;
+  color: #75e8bf;
+  background: rgba(53,214,160,.07);
+}
+
+/* Visualização de branches */
+
+.curso-grafico {
+  position: relative;
+  min-height: 245px;
+  padding: 15px;
+  border-radius: 13px;
+  background: rgba(3,12,21,.48);
+  border: 1px solid rgba(255,255,255,.09);
+  font-family: monospace;
+}
+
+.fluxo-linha {
+  position: absolute;
+  left: 20px;
+  height: 2px;
+  width: 75%;
+  background: #35d6a0;
+}
+
+.fluxo-main { top: 52px; }
+.fluxo-develop {
+  top: 95px;
+  width: 55%;
+  background: #66a9ff;
+}
+.fluxo-feature {
+  top: 138px;
+  width: 42%;
+  background: #bb91ff;
+}
+.fluxo-release {
+  top: 181px;
+  width: 62%;
+  background: #f0b75e;
+}
+.fluxo-trunk {
+  top: 224px;
+  width: 85%;
+  background: #35d6a0;
+}
+
+.fluxo-ponto {
+  display: block;
+  position: absolute;
+  width: 9px;
+  height: 9px;
+  top: -4px;
+  left: 35%;
+  border-radius: 50%;
+  background: #fff;
+  box-shadow: 0 0 12px currentColor;
+}
+
+.fluxo-texto {
+  position: absolute;
+  top: -23px;
+  left: 0;
+  color: #d5e7e3;
+  font-size: 11px;
+}
+
+.grafico-legenda {
+  position: absolute;
+  bottom: 10px;
+  right: 12px;
+  font-size: 9px;
+  letter-spacing: 1px;
+  color: #8fa5ac;
+}
+
+.grafico-legenda span {
+  color: #35d6a0;
+}
+
+/* Indicadores */
+
+.curso-indicadores {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  margin: 25px 0 65px;
+  border: 1px solid var(--borda, #303a46);
+  border-radius: 15px;
+  overflow: hidden;
+}
+
+.indicador {
+  padding: 24px;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.indicador + .indicador {
+  border-left: 1px solid var(--borda, #303a46);
+}
+
+.indicador-numero {
+  font-size: 2.2rem;
+  font-weight: 800;
+  color: #35d6a0;
+}
+
+.indicador-titulo {
+  font-size: .85rem;
+  color: var(--texto-secundario, #9299a8);
+}
+
+/* Conteúdo */
+
+.curso-conteudo {
+  display: grid;
+  grid-template-columns: .8fr 1.2fr;
+  gap: 50px;
+  margin-bottom: 55px;
+}
+
+.curso-conteudo-titulo h3,
+.curso-pratica h3 {
+  font-size: 1.8rem;
+  margin-bottom: 12px;
+}
+
+.curso-conteudo-titulo p,
+.curso-pratica p {
+  color: var(--texto-secundario, #9299a8);
+  line-height: 1.8;
+}
+
+.curso-topicos {
+  display: flex;
+  flex-direction: column;
+}
+
+.topico {
+  display: flex;
+  align-items: center;
+  gap: 17px;
+  padding: 19px 0;
+  border-bottom: 1px solid var(--borda, #303a46);
+}
+
+.topico-numero {
+  font-family: monospace;
+  color: #35d6a0;
+  font-size: .9rem;
+}
+
+.topico h4 {
+  margin: 0 0 6px;
+}
+
+.topico p {
+  margin: 0;
+  font-size: .85rem;
+  line-height: 1.6;
+  color: var(--texto-secundario, #9299a8);
+}
+
+.topico-simbolo {
+  margin-left: auto;
+  color: #35d6a0;
+  font-size: 1.3rem;
+}
+
+/* Atividade prática */
+
+.curso-pratica {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 30px;
+  padding: 35px;
+  border-radius: 17px;
+  background: var(--superficie, #17212d);
+  border: 1px solid var(--borda, #303a46);
+}
+
+.pratica-etapas {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  gap: 12px;
+}
+
+.pratica-etapas div {
+  padding: 13px 15px;
+  background: rgba(53,214,160,.07);
+  border: 1px solid rgba(53,214,160,.18);
+  border-radius: 8px;
+  font-size: .9rem;
+}
+
+.pratica-etapas span {
+  color: #35d6a0;
+  font-family: monospace;
+  margin-right: 12px;
+}
+
+/* Frase final */
+
+.curso-frase {
+  text-align: center;
+  max-width: 720px;
+  margin: 55px auto 10px;
+  font-size: 1.1rem;
+  line-height: 1.9;
+  color: var(--texto-secundario, #9299a8);
+}
+
+.curso-frase > span {
+  display: block;
+  font-size: 4rem;
+  color: #35d6a0;
+  line-height: 1;
+}
+
+/* Responsividade */
+
+@media (max-width: 750px) {
+  .curso-banner,
+  .curso-conteudo,
+  .curso-pratica {
+    grid-template-columns: 1fr;
+  }
+
+  .curso-banner {
+    padding: 25px;
+  }
+
+  .curso-indicadores {
+    grid-template-columns: 1fr;
+  }
+
+  .indicador + .indicador {
+    border-left: none;
+    border-top: 1px solid var(--borda, #303a46);
+  }
+
+  .curso-grafico {
+    min-height: 255px;
+  }
+
+  .curso-conteudo {
+    gap: 25px;
+  }
+}

@@ -171,3 +171,63 @@ pre code { background: none; padding: 0; }
 /* =========================================================
    ↓↓↓ ADICIONE SEUS ESTILOS ABAIXO DESTA LINHA ↓↓↓
    ========================================================= */
+
+/* ---------- seção cards-lorem (cards expansíveis) ---------- */
+#cards-lorem .cartoes {
+  align-items: start;
+}
+
+#cards-lorem .cartao {
+  display: flex;
+  flex-direction: column;
+  transition: border-color .2s ease, box-shadow .2s ease;
+}
+
+#cards-lorem .cartao:hover {
+  border-color: var(--acento);
+}
+
+#cards-lorem .cartao-conteudo {
+  position: relative;
+  max-height: 9.6rem; /* equivale a ~6 linhas, alinhado aos cards vizinhos */
+  overflow: hidden;
+  transition: max-height .35s ease;
+}
+
+#cards-lorem .cartao-conteudo p {
+  margin-bottom: 0;
+}
+
+#cards-lorem .cartao-expansivel:not(.expandido) .cartao-conteudo::after {
+  content: "";
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  height: 3.2rem;
+  background: linear-gradient(to bottom, transparent, var(--superficie));
+  pointer-events: none;
+}
+
+#cards-lorem .cartao-expansivel.expandido .cartao-conteudo {
+  max-height: 40rem;
+}
+
+#cards-lorem .botao-expandir {
+  margin-top: .85rem;
+  padding: .5rem .85rem;
+  background: var(--acento-suave);
+  color: var(--acento-forte);
+  border: 1px solid transparent;
+  border-radius: calc(var(--raio) - 4px);
+  font-family: inherit;
+  font-size: .82rem;
+  font-weight: 600;
+  text-align: center;
+  cursor: pointer;
+  transition: background .2s ease, border-color .2s ease;
+}
+
+#cards-lorem .botao-expandir:hover {
+  border-color: var(--acento);
+}

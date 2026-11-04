@@ -1,6 +1,7 @@
 # artefatos gerados pela build/CI (não versionar)
 data/participantes.json
 data/build.json
+data/commits-historico.json
 
 # sistema operacional / editores
 .DS_Store

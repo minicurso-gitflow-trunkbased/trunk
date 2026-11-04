@@ -31,6 +31,18 @@
     });
   }
 
+  /* ---------- cards: botão "Saber mais" ---------- */
+  document.querySelectorAll('.botao-saber-mais').forEach(function (botao) {
+    var detalhe = document.getElementById(botao.getAttribute('aria-controls'));
+    if (!detalhe) return;
+    botao.addEventListener('click', function () {
+      var aberto = botao.getAttribute('aria-expanded') === 'true';
+      botao.setAttribute('aria-expanded', String(!aberto));
+      botao.textContent = aberto ? 'Saber mais' : 'Mostrar menos';
+      detalhe.hidden = aberto;
+    });
+  });
+
   /* ---------- participantes ---------- */
   var grade = document.getElementById('grade-participantes');
 
@@ -123,5 +135,45 @@
         }
       })
       .catch(function () { /* build local, mantém o texto padrão */ });
+  }
+
+  /* ---------- cards expansíveis (#cards-lorem) ---------- */
+  var secaoCards = document.getElementById('cards-lorem');
+  if (secaoCards) {
+    var cartoes = secaoCards.querySelectorAll('.cartao');
+    var LIMITE_LINHAS_PX = 160; // altura máxima aproximada do parágrafo nos cards 1 e 3
+
+    cartoes.forEach(function (cartao) {
+      var paragrafo = cartao.querySelector('p');
+      if (!paragrafo) return;
+
+      // Se já tiver a estrutura ou se o texto passar da altura base dos outros cards
+      var conteudo = cartao.querySelector('.cartao-conteudo');
+      if (!conteudo && paragrafo.scrollHeight > LIMITE_LINHAS_PX) {
+        cartao.classList.add('cartao-expansivel');
+        conteudo = document.createElement('div');
+        conteudo.className = 'cartao-conteudo';
+        paragrafo.parentNode.insertBefore(conteudo, paragrafo);
+        conteudo.appendChild(paragrafo);
+
+        var botao = document.createElement('button');
+        botao.type = 'button';
+        botao.className = 'botao-expandir';
+        botao.setAttribute('aria-expanded', 'false');
+        botao.textContent = 'Clique aqui para expandir o card e continuar lendo';
+        cartao.appendChild(botao);
+      }
+
+      var btn = cartao.querySelector('.botao-expandir');
+      if (btn) {
+        btn.addEventListener('click', function () {
+          var expandido = cartao.classList.toggle('expandido');
+          btn.setAttribute('aria-expanded', expandido ? 'true' : 'false');
+          btn.textContent = expandido
+            ? 'Clique aqui para recolher o card'
+            : 'Clique aqui para expandir o card e continuar lendo';
+        });
+      }
+    });
   }
 })();

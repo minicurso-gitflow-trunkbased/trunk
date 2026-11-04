@@ -19,6 +19,7 @@ git clone https://github.com/minicurso-gitflow-trunkbased/minicurso-gitflow-trun
 cd minicurso-gitflow-trunkbased.github.io
 
 node scripts/gerar-manifesto.mjs   # gera data/participantes.json
+node scripts/gerar-commits.mjs     # gera data/commits-historico.json
 python3 -m http.server 8000        # ou: npx serve .
 ```
 
@@ -35,17 +36,21 @@ node scripts/validar.mjs
 
 ```
 index.html                  página inicial
+visualizador.html           visualizador interativo do trunk e commits
 404.html                    página de erro do GitHub Pages
 assets/css/style.css        estilos (adicione os seus no fim do arquivo)
 assets/js/main.js           script principal, sem dependências
+assets/js/visualizador.js   script do visualizador interativo e simulador
+
 data/participantes/*.json   um arquivo por pessoa  ← é aqui que você começa
 docs/trunk-based.html       guia rápido da estratégia
 scripts/gerar-manifesto.mjs junta os JSONs em data/participantes.json
+scripts/gerar-commits.mjs   extrai histórico do git para data/commits-historico.json
 scripts/validar.mjs         checagens da CI (HTML, JSON, links locais)
 .github/workflows/          CI e deploy
 ```
 
-`data/participantes.json` e `data/build.json` são **gerados** — estão no `.gitignore`
+`data/participantes.json`, `data/commits-historico.json` e `data/build.json` são **gerados** — estão no `.gitignore`
 e não devem ser commitados.
 
 ## Documentação

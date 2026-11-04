@@ -24,7 +24,6 @@
   var elCampoBusca = document.getElementById('campo-busca');
   var elFiltroTipo = document.getElementById('filtro-tipo');
   var elFiltroTrilha = document.getElementById('filtro-trilha');
-  var elBtnAtualizarGithub = document.getElementById('botao-atualizar-github');
   var elSimuladorFeedback = document.getElementById('simulador-feedback');
 
   var btnSimularMain = document.getElementById('btn-simular-commit-main');
@@ -462,61 +461,6 @@
       });
   }
 
-  function consultarGitHubApi() {
-    if (!elBtnAtualizarGithub) return;
-    var textoOriginal = elBtnAtualizarGithub.innerHTML;
-    elBtnAtualizarGithub.disabled = true;
-    elBtnAtualizarGithub.innerHTML = '<span>⏳</span> Consultando…';
-
-    fetch('https://api.github.com/repos/minicurso-gitflow-trunkbased/minicurso-gitflow-trunkbased.github.io/commits?per_page=30')
-      .then(function (res) {
-        if (!res.ok) throw new Error('Status ' + res.status);
-        return res.json();
-      })
-      .then(function (dados) {
-        if (!Array.isArray(dados)) throw new Error('Resposta inesperada');
-
-        var processados = dados.map(function (c) {
-          var msg = (c.commit && c.commit.message) ? c.commit.message.split('\n')[0] : 'Commit';
-          var autorNome = (c.commit && c.commit.author && c.commit.author.name) ? c.commit.author.name : 'GitHub User';
-          var login = (c.author && c.author.login) ? c.author.login : null;
-          var dataIso = (c.commit && c.commit.author && c.commit.author.date) ? c.commit.author.date : '';
-          var dataFormatada = dataIso ? dataIso.replace('T', ' ').slice(0, 16) : '';
-          var tipo = extrairTipoCommit(msg);
-          var ehMerge = tipo === 'merge' || (c.parents && c.parents.length > 1);
-
-          return {
-            sha: c.sha,
-            shortSha: c.sha ? c.sha.slice(0, 7) : '',
-            mensagem: msg,
-            tipo: tipo,
-            autor: autorNome,
-            github: login,
-            data: dataFormatada,
-            branch: 'main',
-            diretoNoTrunk: !ehMerge,
-            ci: 'passou',
-            deploy: true,
-            detalhes: 'Commit obtido em tempo real da API pública do GitHub Pages do repositório.',
-            arquivos: []
-          };
-        });
-
-        estado.commits = processados;
-        atualizarMetricas();
-        renderizarTimeline();
-        darFeedbackSimulador('✅ ' + processados.length + ' commits carregados diretamente do GitHub!', 'sucesso');
-      })
-      .catch(function (err) {
-        darFeedbackSimulador('Aviso: Limite de requisições do GitHub ou offline. Exibindo histórico local seguro.', 'alerta');
-        carregarHistoricoLocal();
-      })
-      .finally(function () {
-        elBtnAtualizarGithub.disabled = false;
-        elBtnAtualizarGithub.innerHTML = textoOriginal;
-      });
-  }
-
   // Ações do Simulador Didático
   function simularCommitMain() {
     var numero = estado.contadorSimulados++;
@@ -659,7 +603,6 @@
   if (elCampoBusca) elCampoBusca.addEventListener('input', renderizarTimeline);
   if (elFiltroTipo) elFiltroTipo.addEventListener('change', renderizarTimeline);
   if (elFiltroTrilha) elFiltroTrilha.addEventListener('change', renderizarTimeline);
-  if (elBtnAtualizarGithub) elBtnAtualizarGithub.addEventListener('click', consultarGitHubApi);
 
   if (btnSimularMain) btnSimularMain.addEventListener('click', simularCommitMain);
   if (btnSimularBranch) btnSimularBranch.addEventListener('click', simularBranchCurta);
